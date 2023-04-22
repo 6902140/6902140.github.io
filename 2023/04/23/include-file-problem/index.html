@@ -15,15 +15,17 @@
     <link rel="alternative" href="atom.xml" title="yoru-xjtu" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
     
-    
-    
-    <meta name="twitter:card" content="summary"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    <meta name="twitter:image:src" content="https://bangdream.moe/img/ident.png"/>
+    <meta name="twitter:creator" content="@yourtwitteridhere"/>
+    <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="头文件循环依赖问题的解决： - yoru-xjtu"/>
     <meta name="twitter:description" content="欢迎来到Yoru的个人主页,2023.04.22深入理解C项目头文件循环依赖问题1&amp;gt;首先来看看头文件的相互引用1234567891011121314151617/*this is interrupt.h*/#includ,"/>
-    
-    
-    
-    
+    <meta property="og:image" content="https://bangdream.moe/img/ident.png"/>
+    <meta property="og:image:alt" content="欢迎来到Yoru的个人主页,2023.04.22深入理解C项目头文件循环依赖问题1&amp;gt;首先来看看头文件的相互引用1234567891011121314151617/*this is interrupt.h*/#includ,"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="600"/>
     <meta property="og:site_name" content="yoru-xjtu"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content="头文件循环依赖问题的解决： - yoru-xjtu"/>
@@ -100,7 +102,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IB.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> IB_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IB_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IB</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">IB</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">do_something</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// IA.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> IA_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IA_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IA</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">do_something</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> A_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> A_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;IB.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> : <span class="keyword">public</span> IA&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">do_something</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">    IB* b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// B.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> B_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> B_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;IA.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">do_something</span><span class="params">()</span></span>;</span><br><span class="line">    IA* a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
             </audio>
             
@@ -120,8 +122,8 @@
         
         
     <div id="gitalk-container" class="comment link"
-		data-enable="false"
-        data-ae="false"
+		data-enable="true"
+        data-ae="true"
         data-ci=""
         data-cs=""
         data-r=""
@@ -143,6 +145,8 @@
     </div>
 </div>
 </body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 
 
 <script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
@@ -208,6 +212,25 @@
 </div>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 
 
