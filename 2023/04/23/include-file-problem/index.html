@@ -22,30 +22,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="欢迎来到Yoru的个人主页">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yoru-xjtu">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="2023.04.22深入理解C项目头文件循环依赖问题1&gt;首先来看看头文件的相互引用1234567891011121314151617&#x2F;*this is interrupt.h*&#x2F;#include &quot;memory.h&quot;&#x2F;&#x2F;definations&#x2F;&#x2F;--------------------------------&#x2F;*this is memory.h*&#x2F;#include &amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="头文件循环依赖问题的解决：">
+<meta property="og:url" content="http://example.com/2023/04/23/include-file-problem/index.html">
 <meta property="og:site_name" content="yoru-xjtu">
-<meta property="og:description" content="欢迎来到Yoru的个人主页">
+<meta property="og:description" content="2023.04.22深入理解C项目头文件循环依赖问题1&gt;首先来看看头文件的相互引用1234567891011121314151617&#x2F;*this is interrupt.h*&#x2F;#include &quot;memory.h&quot;&#x2F;&#x2F;definations&#x2F;&#x2F;--------------------------------&#x2F;*this is memory.h*&#x2F;#include &amp;qu">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-22T16:18:25.000Z">
+<meta property="article:modified_time" content="2023-04-22T16:20:21.077Z">
 <meta property="article:author" content="Zhuiri Xiao">
+<meta property="article:tag" content="C，C++，设计模式">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/04/23/include-file-problem/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>yoru-xjtu</title>
+  <title>头文件循环依赖问题的解决： | yoru-xjtu</title>
   
 
 
@@ -196,9 +199,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -214,10 +218,9 @@
       <meta itemprop="name" content="yoru-xjtu">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/04/23/include-file-problem/" class="post-title-link" itemprop="url">头文件循环依赖问题的解决：</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          头文件循环依赖问题的解决：
+        </h1>
 
         <div class="post-meta">
 
@@ -233,6 +236,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -243,7 +253,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="2023-04-22"><a href="#2023-04-22" class="headerlink" title="2023.04.22"></a>2023.04.22</h1><h2 id="深入理解C项目头文件循环依赖问题"><a href="#深入理解C项目头文件循环依赖问题" class="headerlink" title="深入理解C项目头文件循环依赖问题"></a>深入理解C项目头文件循环依赖问题</h2><h3 id="1-gt-首先来看看头文件的相互引用"><a href="#1-gt-首先来看看头文件的相互引用" class="headerlink" title="1&gt;首先来看看头文件的相互引用"></a>1&gt;首先来看看头文件的相互引用</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*this is interrupt.h*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;memory.h&quot;</span></span></span><br><span class="line"><span class="comment">//definations</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------------------</span></span><br><span class="line"><span class="comment">/*this is memory.h*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;interrupt.h&quot;</span></span></span><br><span class="line"><span class="comment">//definations</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------------------</span></span><br><span class="line"><span class="comment">/*this is page_fault.c*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">page_fault_handler</span><span class="params">(... , ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="2023-04-22"><a href="#2023-04-22" class="headerlink" title="2023.04.22"></a>2023.04.22</h1><h2 id="深入理解C项目头文件循环依赖问题"><a href="#深入理解C项目头文件循环依赖问题" class="headerlink" title="深入理解C项目头文件循环依赖问题"></a>深入理解C项目头文件循环依赖问题</h2><h3 id="1-gt-首先来看看头文件的相互引用"><a href="#1-gt-首先来看看头文件的相互引用" class="headerlink" title="1&gt;首先来看看头文件的相互引用"></a>1&gt;首先来看看头文件的相互引用</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*this is interrupt.h*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;memory.h&quot;</span></span></span><br><span class="line"><span class="comment">//definations</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------------------</span></span><br><span class="line"><span class="comment">/*this is memory.h*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;interrupt.h&quot;</span></span></span><br><span class="line"><span class="comment">//definations</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------------------</span></span><br><span class="line"><span class="comment">/*this is page_fault.c*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">page_fault_handler</span><span class="params">(... , ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//尝试编译报错</span></span><br><span class="line">error: <span class="meta">#<span class="keyword">include</span> nested too deeply</span></span><br></pre></td></tr></table></figure>
@@ -273,103 +283,57 @@
 <p>相当于把依赖对方的某一种行为抽象成一个接口类</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IB.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> IB_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IB_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IB</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">IB</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">do_something</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// IA.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> IA_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IA_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IA</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">do_something</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> A_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> A_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;IB.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> : <span class="keyword">public</span> IA&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">do_something</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">    IB* b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// B.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> B_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> B_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;IA.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">do_something</span><span class="params">()</span></span>;</span><br><span class="line">    IA* a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/C%EF%BC%8CC-%EF%BC%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># C，C++，设计模式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/22/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/22/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Zhuiri Xiao">
-      <meta itemprop="description" content="欢迎来到Yoru的个人主页">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yoru-xjtu">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/04/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-
-	    
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-04-22 17:54:27" itemprop="dateCreated datePublished" datetime="2023-04-22T17:54:27+08:00">2023-04-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
+   <div>
+     <div>
     
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
     
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
+</div>
+   </div>
  
-
-
-  
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="<!-- 来必力City版安装代码 --> <div id="lv-container" data-id="city" data-uid="MTAyMC81ODM5MS8zNDg1NA=="> <script type="text/javascript"> (function(d, s) { var j, e = d.getElementsByTagName(s)[0];
+if (typeof LivereTower === "function") { return; }
+j = d.createElement(s); j.src = "https://cdn-city.livere.com/js/embed.dist.js"; j.async = true;
+e.parentNode.insertBefore(j, e); })(document, "script"); </script> <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript> </div> <!-- City版安装代码已完成 -->"></div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -416,6 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2023-04-22"><span class="nav-number">1.</span> <span class="nav-text">2023.04.22</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3C%E9%A1%B9%E7%9B%AE%E5%A4%B4%E6%96%87%E4%BB%B6%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">深入理解C项目头文件循环依赖问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-gt-%E9%A6%96%E5%85%88%E6%9D%A5%E7%9C%8B%E7%9C%8B%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">1&gt;首先来看看头文件的相互引用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.1.0.0.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8ifndef%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">(1)使用ifndef方式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-gt-%E6%88%91%E4%BB%AC%E5%86%8D%E6%9D%A5%E6%9D%A5%E7%9C%8B%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">2&gt;我们再来来看循环依赖问题如何解决？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%8A%A0%E7%9B%B4%E8%A7%82%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">再来看一个更加直观的例子：：</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -599,6 +564,21 @@ $(document).ready(function() {
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 </body>
 </html>
