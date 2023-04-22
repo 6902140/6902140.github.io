@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>how_make_file - yoru-xjtu</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="欢迎来到Yoru的个人主页,how to makefile：：(1)先来看一下项目test的目录结构
+(2)再来看一个makefile的具体代码：1234567891011121314151617181920212223242,"> 
+    <meta name="author" content="Zhuiri Xiao"> 
+    <link rel="alternative" href="atom.xml" title="yoru-xjtu" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="how_make_file - yoru-xjtu"/>
+    <meta name="twitter:description" content="欢迎来到Yoru的个人主页,how to makefile：：(1)先来看一下项目test的目录结构
+(2)再来看一个makefile的具体代码：1234567891011121314151617181920212223242,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="yoru-xjtu"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="how_make_file - yoru-xjtu"/>
+    <meta property="og:description" content="欢迎来到Yoru的个人主页,how to makefile：：(1)先来看一下项目test的目录结构
+(2)再来看一个makefile的具体代码：1234567891011121314151617181920212223242,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">yoru-xjtu</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">how_make_file</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">how_make_file</h1>
+        <div class="stuff">
+            <span>四月 23, 2023</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/makefile/" rel="tag">makefile</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="how-to-makefile：："><a href="#how-to-makefile：：" class="headerlink" title="how to makefile：："></a>how to makefile：：</h3><h4 id="1-先来看一下项目test的目录结构"><a href="#1-先来看一下项目test的目录结构" class="headerlink" title="(1)先来看一下项目test的目录结构"></a>(1)先来看一下项目test的目录结构</h4><p><img src="/./pic/test_file_struct_show.png"></p>
+<h4 id="2-再来看一个makefile的具体代码："><a href="#2-再来看一个makefile的具体代码：" class="headerlink" title="(2)再来看一个makefile的具体代码："></a>(2)再来看一个makefile的具体代码：</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##这是一个简单项目的makefile</span></span><br><span class="line">BUILD_DIR = ./build <span class="comment">##制定项目的生成目录</span></span><br><span class="line">CC = gcc</span><br><span class="line"><span class="comment">##指定编译器</span></span><br><span class="line">LD = ld</span><br><span class="line"><span class="comment">##制定链接器</span></span><br><span class="line">LDLIBS= -lm -lc</span><br><span class="line"><span class="comment">##指定连接系统库</span></span><br><span class="line">CFLAGS = -Wall -Werror -I./source</span><br><span class="line"><span class="comment">##制定编译器行为以及连接头文件</span></span><br><span class="line">SRC_DIR=./source</span><br><span class="line"><span class="comment">##制定源码路径</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/main.o: <span class="variable">$(SRC_DIR)</span>/main.c</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="comment">##这是在将main.c编译为main.o记得把头文件包含进来</span></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/a.o: <span class="variable">$(SRC_DIR)</span>/a.c</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/b.o: <span class="variable">$(SRC_DIR)</span>/b.c</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##这是在构建伪目标</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#.PHONY 是 Makefile 中的一个特殊目标，它告诉 Make 这个目标并不是</span></span><br><span class="line"><span class="comment">#一个需要被构建的文件，而是一个应该总是被执行的命令。语法如下：</span></span><br><span class="line"><span class="comment">#.PHONY: build test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#build:</span></span><br><span class="line"><span class="comment">#    gcc -c main.c</span></span><br><span class="line"><span class="comment">#    gcc -o program main.o</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#test:</span></span><br><span class="line"><span class="comment">#    ./program test_input.txt</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: build</span></span><br><span class="line"><span class="section">build: <span class="variable">$(BUILD_DIR)</span>/program</span></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/program:  <span class="variable">$(BUILD_DIR)</span>/main.o <span class="variable">$(BUILD_DIR)</span>/a.o <span class="variable">$(BUILD_DIR)</span>/b.o</span><br><span class="line">	<span class="variable">$(CC)</span> -Wall -Werror <span class="variable">$^</span> -o <span class="variable">$@</span> <span class="variable">$(LDLIBS)</span> \</span><br><span class="line">	&amp;&amp; rm -f <span class="variable">$(BUILD_DIR)</span>/*.o</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f <span class="variable">$(BUILD_DIR)</span>/*</span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: run</span></span><br><span class="line"><span class="section">run:</span></span><br><span class="line">	<span class="variable">$(BUILD_DIR)</span>/program</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-咱们再来看一下具体的运行指令"><a href="#3-咱们再来看一下具体的运行指令" class="headerlink" title="(3)咱们再来看一下具体的运行指令"></a>(3)咱们再来看一下具体的运行指令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">make build指令</span></span><br><span class="line">➜  test make build</span><br><span class="line">gcc -Wall -Werror -I./source -c source/main.c -o build/main.o</span><br><span class="line">gcc -Wall -Werror -I./source -c source/a.c -o build/a.o</span><br><span class="line">gcc -Wall -Werror -I./source -c source/b.c -o build/b.o</span><br><span class="line">gcc -Wall -Werror build/main.o build/a.o build/b.o -o build/program -lm -lc \</span><br><span class="line">&amp;&amp; rm -f ./build/*.o</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">make run 指令</span></span><br><span class="line">➜  test make run</span><br><span class="line">./build/program</span><br><span class="line">-100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">make clean 指令</span></span><br><span class="line">➜  test make clean</span><br><span class="line">rm -f ./build/*</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">make -B -d指令查看具体的过程</span></span><br><span class="line">➜  test make  -B -d</span><br><span class="line">GNU Make 4.2.1</span><br><span class="line">Built for x86_64-pc-linux-gnu</span><br><span class="line">Copyright (C) 1988-2016 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line">Reading makefiles...</span><br><span class="line">Reading makefile &#x27;makefile&#x27;...</span><br><span class="line">Updating makefiles....</span><br><span class="line"> Considering target file &#x27;makefile&#x27;.</span><br><span class="line">  Looking for an implicit rule for &#x27;makefile&#x27;.</span><br><span class="line">  Trying pattern rule with stem &#x27;makefile&#x27;.</span><br><span class="line">  Trying implicit prerequisite &#x27;makefile.o&#x27;.</span><br><span class="line">  Trying pattern rule with stem &#x27;makefile&#x27;.</span><br><span class="line">  Trying implicit prerequisite &#x27;makefile.c&#x27;.</span><br><span class="line">  Trying pattern rule with stem &#x27;makefile&#x27;.</span><br><span class="line">              </span><br><span class="line">              ......</span><br><span class="line">              </span><br><span class="line">Updating goal targets....</span><br><span class="line">Considering target file &#x27;build/main.o&#x27;.</span><br><span class="line"> File &#x27;build/main.o&#x27; does not exist.</span><br><span class="line">  Considering target file &#x27;source/main.c&#x27;.</span><br><span class="line">   Looking for an implicit rule for &#x27;source/main.c&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.y&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.l&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.w&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.w&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main.c&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.c,v&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main.c&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/RCS/main.c,v&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main.c&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/RCS/main.c&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main.c&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/s.main.c&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main.c&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/SCCS/s.main.c&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.y&#x27;.</span><br><span class="line">   Looking for a rule with intermediate file &#x27;source/main.y&#x27;.</span><br><span class="line">    Avoiding implicit rule recursion.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.y&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/main.y,v&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.y&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/RCS/main.y,v&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.y&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/RCS/main.y&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.y&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/s.main.y&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.y&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/SCCS/s.main.y&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.l&#x27;.</span><br><span class="line">   Looking for a rule with intermediate file &#x27;source/main.l&#x27;.</span><br><span class="line">    Avoiding implicit rule recursion.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.l&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/main.l,v&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.l&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/RCS/main.l,v&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.l&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/RCS/main.l&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.l&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/s.main.l&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.l&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/SCCS/s.main.l&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Trying implicit prerequisite &#x27;source/main.w&#x27;.</span><br><span class="line">   Looking for a rule with intermediate file &#x27;source/main.w&#x27;.</span><br><span class="line">    Avoiding implicit rule recursion.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.w&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/main.w,v&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.w&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/RCS/main.w,v&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.w&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/RCS/main.w&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.w&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/s.main.w&#x27;.</span><br><span class="line">    Trying pattern rule with stem &#x27;main.w&#x27;.</span><br><span class="line">    Trying implicit prerequisite &#x27;source/SCCS/s.main.w&#x27;.</span><br><span class="line">   Trying pattern rule with stem &#x27;main&#x27;.</span><br><span class="line">   Rejecting impossible implicit prerequisite &#x27;source/main.w&#x27;.</span><br><span class="line">   No implicit rule found for &#x27;source/main.c&#x27;.</span><br><span class="line">   Finished prerequisites of target file &#x27;source/main.c&#x27;.</span><br><span class="line">  No need to remake target &#x27;source/main.c&#x27;.</span><br><span class="line"> Finished prerequisites of target file &#x27;build/main.o&#x27;.</span><br><span class="line">Must remake target &#x27;build/main.o&#x27;.</span><br><span class="line">gcc -Wall -Werror -I./source -c source/main.c -o build/main.o</span><br><span class="line">Putting child 0x5641de93b920 (build/main.o) PID 36600 on the chain.</span><br><span class="line">Live child 0x5641de93b920 (build/main.o) PID 36600 </span><br><span class="line">Reaping winning child 0x5641de93b920 PID 36600 </span><br><span class="line">Removing child 0x5641de93b920 PID 36600 from chain.</span><br><span class="line">Successfully remade target file &#x27;build/main.o&#x27;.</span><br><span class="line">➜  test </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#how-to-makefile%EF%BC%9A%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">how to makefile：：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%88%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%8B%E9%A1%B9%E7%9B%AEtest%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">(1)先来看一下项目test的目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%86%8D%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%AAmakefile%E7%9A%84%E5%85%B7%E4%BD%93%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">(2)再来看一个makefile的具体代码：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%92%B1%E4%BB%AC%E5%86%8D%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%8B%E5%85%B7%E4%BD%93%E7%9A%84%E8%BF%90%E8%A1%8C%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">(3)咱们再来看一下具体的运行指令</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
