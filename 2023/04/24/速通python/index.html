@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="速通python语法(1)代码块对齐规则1234567# Fibonacci series:# the sum of two elements defines the nexta, b &#x3D; 0, 1while a &lt; 10:    print(a)    a, b &#x3D; b, a+b  循环体 是 缩进的 ：缩进是 Python 组织语句的方式。在交互式命令行里，得为每个缩输入制表符或空格。使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="速通python">
+<meta property="og:url" content="http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/index.html">
+<meta property="og:site_name" content="yoru-xjtu">
+<meta property="og:description" content="速通python语法(1)代码块对齐规则1234567# Fibonacci series:# the sum of two elements defines the nexta, b &#x3D; 0, 1while a &lt; 10:    print(a)    a, b &#x3D; b, a+b  循环体 是 缩进的 ：缩进是 Python 组织语句的方式。在交互式命令行里，得为每个缩输入制表符或空格。使">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-24T06:55:55.000Z">
+<meta property="article:modified_time" content="2023-04-24T06:58:19.265Z">
+<meta property="article:author" content="Zhuiri Xiao">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>速通python</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/6902140">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/04/23/how-make-file/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&text=速通python"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&is_video=false&description=速通python"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=速通python&body=Check out this article: http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&name=速通python&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&t=速通python"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9F%E9%80%9Apython%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">速通python语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%A3%E7%A0%81%E5%9D%97%E5%AF%B9%E9%BD%90%E8%A7%84%E5%88%99"><span class="toc-number">1.0.1.</span> <span class="toc-text">(1)代码块对齐规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9C%A8python%E4%B8%AD%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.0.2.</span> <span class="toc-text">(2)在python中一切都是对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-number">1.0.3.</span> <span class="toc-text">(3)函数定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.0.4.</span> <span class="toc-text">(4)lambda表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%96%87%E6%A1%A3%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A"><span class="toc-number">1.0.5.</span> <span class="toc-text">(5)文档字符串：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%B3%A8%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.0.6.</span> <span class="toc-text">函数注解：</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        速通python
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Zhuiri Xiao</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-04-24T06:55:55.000Z" class="dt-published" itemprop="datePublished">2023-04-24</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="p-category" href="/tags/python/" rel="tag">python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="速通python语法"><a href="#速通python语法" class="headerlink" title="速通python语法"></a>速通python语法</h2><h4 id="1-代码块对齐规则"><a href="#1-代码块对齐规则" class="headerlink" title="(1)代码块对齐规则"></a>(1)代码块对齐规则</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fibonacci series:</span></span><br><span class="line"><span class="comment"># the sum of two elements defines the next</span></span><br><span class="line">a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="built_in">print</span>(a)</span><br><span class="line">    a, b = b, a+b</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>循环体 是 缩进的 ：缩进是 Python 组织语句的方式。在交互式命令行里，得为每个缩输入制表符或空格。使用文本编辑器可以实现更复杂的输入方式；所有像样的文本编辑器都支持自动缩进。交互式输入复合语句时, 要在最后输入空白行表示结束（因为解析器不知道哪一行代码是最后一行）。注意，同一块语句的每一行的缩进相同。</p>
+<h4 id="2-在python中一切都是对象"><a href="#2-在python中一切都是对象" class="headerlink" title="(2)在python中一切都是对象"></a>(2)在python中一切都是对象</h4><h4 id="3-函数定义"><a href="#3-函数定义" class="headerlink" title="(3)函数定义"></a>(3)函数定义</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):    <span class="comment"># write Fibonacci series up to n</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Print a Fibonacci series up to n.&quot;&quot;&quot;</span></span><br><span class="line">    a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> a &lt; n:</span><br><span class="line">        <span class="built_in">print</span>(a, end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">    <span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now call the function we just defined:</span></span><br><span class="line">fib(<span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义</strong> 函数使用关键字 def，后跟函数名与括号内的形参列表。函数语句从下一行开始，并且必须缩进。</p>
+<p><strong>函数内的第一条语句是字符串时，该字符串就是文档字符串</strong>，<strong>也称为 docstring</strong>，详见 文档字符串。利用文档字符串可以自动生成在线文档或打印版文档，还可以让开发者在浏览代码时直接查阅文档；Python 开发者最好养成在代码中加入文档字符串的好习惯。</p>
+<p>函数在 执行 时使用函数局部变量符号表，所有函数变量赋值都存在局部符号表中；<strong>引用变量时，首先，在局部符号表里查找变量，然后，是外层函数局部符号表，再是全局符号表</strong>，最后是内置名称符号表。因此，<strong>尽管可以引用全局变量和外层函数的变量，但最好不要在函数内直接赋值</strong>（除非是 global 语句定义的全局变量，或 nonlocal 语句定义的外层函数变量）。</p>
+<p>在调用函数时会将实际参数（实参）引入到被调用函数的局部符号表中；因此，实参是使用 按值调用 来传递的（其中的 值 始终是对象的 引用 而不是对象的值）。 1** 当一个函数调用另外一个函数时，会为该调用创建一个新的局部符号表。**</p>
+<p>函数定义在当前符号表中把<strong>函数名与函数对象</strong>关联在一起。解释器把<strong>函数名指向的对象作为用户自定义函数。还可以使用其他名称指向同一个函数对象</strong>，并访问访该函数;</p>
+<p>以及：<strong>默认值在 定义 作用域里的函数定义中求值</strong>，所以：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ask_ok</span>(<span class="params">prompt, retries=<span class="number">4</span>, reminder=<span class="string">&#x27;Please try again!&#x27;</span></span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        ok = <span class="built_in">input</span>(prompt)</span><br><span class="line">        <span class="keyword">if</span> ok <span class="keyword">in</span> (<span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;ye&#x27;</span>, <span class="string">&#x27;yes&#x27;</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> ok <span class="keyword">in</span> (<span class="string">&#x27;n&#x27;</span>, <span class="string">&#x27;no&#x27;</span>, <span class="string">&#x27;nop&#x27;</span>, <span class="string">&#x27;nope&#x27;</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        retries = retries - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> retries &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;invalid user response&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(reminder)</span><br></pre></td></tr></table></figure>
+
+<p>：注意：如果默认参数为可变对象是，那么它在运算函数时，只会被初始化一次：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">a, L=[]</span>):</span><br><span class="line">    L.append(a)</span><br><span class="line">    <span class="keyword">return</span> L</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f(<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(f(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(f(<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出结果为：</span></span><br><span class="line">[<span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>不想在后续调用之间共享默认值时，应以如下方式编写函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">a, L=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">if</span> L <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        L = []</span><br><span class="line">    L.append(a)</span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+<p>解包形参列表：<br>函数调用要求独立的位置参数，但实参在列表或元组里时，要执行相反的操作。例如，内置的 range() 函数要求独立的 start 和 stop 实参。如果这些参数不是独立的，则要在调用函数时，<strong>用 * 操作符把实参从列表或元组解包出来</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">3</span>, <span class="number">6</span>))            <span class="comment"># normal call with separate arguments</span></span><br><span class="line"></span><br><span class="line">args = [<span class="number">3</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">list</span>(<span class="built_in">range</span>(*args))            <span class="comment"># call with arguments unpacked from a list</span></span><br></pre></td></tr></table></figure>
+<p>字典需要使用**进行解包：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">parrot</span>(<span class="params">voltage, state=<span class="string">&#x27;a stiff&#x27;</span>, action=<span class="string">&#x27;voom&#x27;</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-- This parrot wouldn&#x27;t&quot;</span>, action, end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;if you put&quot;</span>, voltage, <span class="string">&quot;volts through it.&quot;</span>, end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;E&#x27;s&quot;</span>, state, <span class="string">&quot;!&quot;</span>)</span><br><span class="line"></span><br><span class="line">d = &#123;<span class="string">&quot;voltage&quot;</span>: <span class="string">&quot;four million&quot;</span>, <span class="string">&quot;state&quot;</span>: <span class="string">&quot;bleedin&#x27; demised&quot;</span>, <span class="string">&quot;action&quot;</span>: <span class="string">&quot;VOOM&quot;</span>&#125;</span><br><span class="line">parrot(**d)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-lambda表达式"><a href="#4-lambda表达式" class="headerlink" title="(4)lambda表达式"></a>(4)lambda表达式</h4><p>lambda 关键字用于创建小巧的匿名函数。lambda a, b: a+b 函数返回两个参数的和。Lambda 函数可用于任何需要函数对象的地方。在语法上，匿名函数只能是单个表达式。在语义上，它只是常规函数定义的语法糖。与嵌套函数定义一样，lambda 函数可以引用包含作用域中的变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">make_incrementor</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x + n</span><br><span class="line"></span><br><span class="line">f = make_incrementor(<span class="number">42</span>)</span><br><span class="line">f(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#42</span></span><br><span class="line">f(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#43</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-文档字符串："><a href="#5-文档字符串：" class="headerlink" title="(5)文档字符串："></a>(5)文档字符串：</h4><p>以下是文档字符串内容和格式的约定。</p>
+<p>第一行应为对象用途的简短摘要。为保持简洁，不要在这里显式说明对象名或类型，因为可通过其他方式获取这些信息（除非该名称碰巧是描述函数操作的动词）。这一行应以大写字母开头，以句点结尾。</p>
+<p>文档字符串为多行时，第二行应为空白行，在视觉上将摘要与其余描述分开。后面的行可包含若干段落，描述对象的调用约定、副作用等。</p>
+<p>Python 解析器不会删除 Python 中多行字符串字面值的缩进，因此，文档处理工具应在必要时删除缩进。这项操作遵循以下约定：文档字符串第一行 之后 的第一个非空行决定了整个文档字符串的缩进量（第一行通常与字符串开头的引号相邻，其缩进在字符串中并不明显，因此，不能用第一行的缩进），然后，删除字符串中所有行开头处与此缩进“等价”的空白符。不能有比此缩进更少的行，但如果出现了缩进更少的行，应删除这些行的所有前导空白符。转化制表符后（通常为 8 个空格），应测试空白符的等效性。</p>
+<p>下面是多行文档字符串的一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_function</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Do nothing, but document it.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    No, really, it doesn&#x27;t do anything.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(my_function.__doc__)</span><br><span class="line"></span><br><span class="line">Do nothing, but document it.</span><br><span class="line"></span><br><span class="line">    No, really, it doesn<span class="string">&#x27;t do anything.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="函数注解："><a href="#函数注解：" class="headerlink" title="函数注解："></a>函数注解：</h4><p>标注 以字典的形式存放在函数的 <strong>annotations</strong> 属性中，并且不会影响函数的任何其他部分。 形参标注的定义方式是在形参名后加冒号，后面跟一个表达式，该表达式会被求值为标注的值。 返回值标注的定义方式是加组合符号 -&gt;，后面跟一个表达式，该标注位于形参列表和表示 def 语句结束的冒号之间。 下面的示例有一个必须的参数，一个可选的关键字参数以及返回值都带有相应的标注:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">ham: <span class="built_in">str</span>, eggs: <span class="built_in">str</span> = <span class="string">&#x27;eggs&#x27;</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Annotations:&quot;</span>, f.__annotations__)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Arguments:&quot;</span>, ham, eggs)</span><br><span class="line">    <span class="keyword">return</span> ham + <span class="string">&#x27; and &#x27;</span> + eggs</span><br><span class="line"></span><br><span class="line">f(<span class="string">&#x27;spam&#x27;</span>)</span><br><span class="line">Annotations: &#123;<span class="string">&#x27;ham&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;str&#x27;</span>&gt;, <span class="string">&#x27;return&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;str&#x27;</span>&gt;, <span class="string">&#x27;eggs&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;str&#x27;</span>&gt;&#125;</span><br><span class="line">Arguments: spam eggs</span><br><span class="line"><span class="string">&#x27;spam and eggs&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/6902140">项目</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9F%E9%80%9Apython%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">速通python语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%A3%E7%A0%81%E5%9D%97%E5%AF%B9%E9%BD%90%E8%A7%84%E5%88%99"><span class="toc-number">1.0.1.</span> <span class="toc-text">(1)代码块对齐规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9C%A8python%E4%B8%AD%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.0.2.</span> <span class="toc-text">(2)在python中一切都是对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-number">1.0.3.</span> <span class="toc-text">(3)函数定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.0.4.</span> <span class="toc-text">(4)lambda表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%96%87%E6%A1%A3%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A"><span class="toc-number">1.0.5.</span> <span class="toc-text">(5)文档字符串：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%B3%A8%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.0.6.</span> <span class="toc-text">函数注解：</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&text=速通python"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&is_video=false&description=速通python"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=速通python&body=Check out this article: http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&title=速通python"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&name=速通python&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/04/24/%E9%80%9F%E9%80%9Apython/&t=速通python"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Zhuiri Xiao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/6902140">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
