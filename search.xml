@@ -28,8 +28,11 @@
 <h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><p><a href="https://www.cnblogs.com/IICaesar/p/13262652.html">manjaro双显卡快捷切换 (click here)</a></p>
 <p><a href="http://home.ustc.edu.cn/~liujunyan/blog/Linux-manjaro-%E4%B8%8B%E5%8F%8C%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8Acuda%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">pytorch配置  (click here)</a></p>
 ]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
       <tags>
-        <tag>configure</tag>
+        <tag>config</tag>
       </tags>
   </entry>
   <entry>
@@ -52,5 +55,11 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <h3 id="新增文章："><a href="#新增文章：" class="headerlink" title="新增文章："></a>新增文章：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;My-New-Post&quot;</span></span><br><span class="line"><span class="comment">#then writting and re-generate and deploy</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
+      <tags>
+        <tag>daily-dev</tag>
+      </tags>
   </entry>
 </search>
