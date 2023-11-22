@@ -80,7 +80,7 @@
   </entry>
   <entry>
     <title>小站诞生</title>
-    <url>/2023/11/20/start-my-website/</url>
+    <url>/2023/11/14/start-my-website/</url>
     <content><![CDATA[<p>这个小站是<code>Zhuiri Xiao</code>@<code>xjtu</code>于2023.11.20日基于<code>hexo</code>创建的托管于<code>github</code>平台的个人博客;</p>
 <p>主要会用于记录个人生活以及学习笔记。</p>
 <h2 id="小站的诞生"><a href="#小站的诞生" class="headerlink" title="小站的诞生"></a>小站的诞生</h2><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br><span class="line"><span class="comment">#如果您没有代理 可以参考以下命令设置npm代理</span></span><br><span class="line">$ npm config <span class="built_in">set</span> registry http://mirrors.cloud.tencent.com/npm/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -103,6 +103,27 @@
       </categories>
       <tags>
         <tag>daily-dev</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有关于小帆帆的记事本</title>
+    <url>/2023/11/17/%E6%9C%89%E5%85%B3%E4%BA%8E%E5%B0%8F%E5%B8%86%E5%B8%86%E7%9A%84%E8%AE%B0%E4%BA%8B%E6%9C%AC/</url>
+    <content><![CDATA[<h2 id="帆帆公举-愛するもの"><a href="#帆帆公举-愛するもの" class="headerlink" title="帆帆公举 愛するもの"></a>帆帆公举 愛するもの</h2><ul>
+<li>圣女果冰糖葫芦</li>
+<li>喜欢被夸年轻</li>
+<li>喜欢麦当劳等相似垃圾食品</li>
+<li>喜欢油腻烤肠</li>
+</ul>
+<h2 id="帆帆公举-嫌なこと"><a href="#帆帆公举-嫌なこと" class="headerlink" title="帆帆公举 嫌なこと"></a>帆帆公举 嫌なこと</h2><ul>
+<li>被叫做坦克</li>
+<li>被恶意贬低</li>
+</ul>
+]]></content>
+      <categories>
+        <category>小小生活情调</category>
+      </categories>
+      <tags>
+        <tag>我和我的帆帆公主</tag>
       </tags>
   </entry>
 </search>
