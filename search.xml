@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode-2023-11.22</title>
+    <url>/2023/11/22/leetcode-2023-11-22/</url>
+    <content><![CDATA[<h1 id="leetcode日常2023-11-22"><a href="#leetcode日常2023-11-22" class="headerlink" title="leetcode日常2023.11.22"></a><code>leetcode</code>日常2023.11.22</h1><p>题目链接在这里<a href="https://leetcode.cn/problems/number-of-islands/description/?envType=study-plan-v2&envId=top-100-liked">click here</a></p>
+<p>给你一个由 <code>&#39;1&#39;</code>（陆地）和 <code>&#39;0&#39;</code>（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line">输入：grid = [</span><br><span class="line">  [<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>],</span><br><span class="line">  [<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>],</span><br><span class="line">  [<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>],</span><br><span class="line">  [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>]</span><br><span class="line">]</span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line">输入：grid = [</span><br><span class="line">  [<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>],</span><br><span class="line">  [<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>],</span><br><span class="line">  [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>],</span><br><span class="line">  [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>]</span><br><span class="line">]</span><br><span class="line">输出：<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 300</code></li>
+<li><code>grid[i][j]</code> 的值为 <code>&#39;0&#39;</code> 或 <code>&#39;1&#39;</code></li>
+</ul>
+<h2 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment">#简单的dfs遍历来确定一个岛屿所有陆地</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs_kill</span>(<span class="params">self,i:<span class="built_in">int</span>,j:<span class="built_in">int</span>,grid:<span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid[i][j]==<span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        leny=<span class="built_in">len</span>(grid)</span><br><span class="line">        lenx=<span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        grid[i][j]=<span class="string">&#x27;2&#x27;</span><span class="comment">#已经遍历过的陆地就标记为2</span></span><br><span class="line">        <span class="keyword">if</span> i-<span class="number">1</span>&gt;=<span class="number">0</span>:</span><br><span class="line">            self.dfs_kill(i-<span class="number">1</span>,j,grid)</span><br><span class="line">        <span class="keyword">if</span> i+<span class="number">1</span>&lt;leny:</span><br><span class="line">            self.dfs_kill(i+<span class="number">1</span>,j,grid)</span><br><span class="line">        <span class="keyword">if</span> j-<span class="number">1</span>&gt;=<span class="number">0</span>:</span><br><span class="line">            self.dfs_kill(i,j-<span class="number">1</span>,grid)</span><br><span class="line">        <span class="keyword">if</span> j+<span class="number">1</span>&lt;lenx:</span><br><span class="line">            self.dfs_kill(i,j+<span class="number">1</span>,grid)</span><br><span class="line">     </span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        leny=<span class="built_in">len</span>(grid)</span><br><span class="line">        lenx=<span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        res=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,leny):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,lenx):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j]==<span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                    res+=<span class="number">1</span></span><br><span class="line">                    self.dfs_kill(i,j,grid)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
+      <tags>
+        <tag>daily algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>manjaro 深度学习开发环境配置</title>
     <url>/2023/11/21/manjaro%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>本文主要记录 linux 系统 (manjaro) 双显卡 (Intel 集显 + Nvidia 独显) 的驱动安装以及 cuda 的安装细节。</p>
