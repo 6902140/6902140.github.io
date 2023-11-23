@@ -198,6 +198,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yorux.fun/2023/11/23/mariadb-installation-on-manjaro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Zhuiri Xiao">
+      <meta itemprop="description" content="就如高舉着這份不變的思念一樣">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiao Blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/23/mariadb-installation-on-manjaro/" class="post-title-link" itemprop="url">记录`mariaDB`在`manjaro`上的一次安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-23 18:54:22" itemprop="dateCreated datePublished" datetime="2023-11-23T18:54:22+08:00">2023-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-24 01:24:14" itemprop="dateModified" datetime="2023-11-24T01:24:14+08:00">2023-11-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%8B%A6%E9%80%BC%E5%BC%80%E5%8F%91%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">苦逼开发日常</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>691</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本安装步骤："><a href="#基本安装步骤：" class="headerlink" title="基本安装步骤："></a>基本安装步骤：</h2><p>step1：pacman安装mariadb的安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S  mariadb-clients mariadb <span class="comment">#命令行安装mariadb        </span></span><br></pre></td></tr></table></figure>
+
+<p>step2：根据配置安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql <span class="comment">#按照配置安装</span></span><br></pre></td></tr></table></figure>
+
+<p>step3：启动mariadb service</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start mariadb <span class="comment"># 启动mariadb服务</span></span><br><span class="line">$ systemctl <span class="built_in">enable</span> mariadb <span class="comment"># 设置开机自启动</span></span><br></pre></td></tr></table></figure>
+
+<p>step4: 配置数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mariadb-secure-installation <span class="comment"># 主要是进行🔑的配置</span></span><br></pre></td></tr></table></figure>
+
+<p>step5：登陆<code>mariadb</code>服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mariadb -u root -p </span><br></pre></td></tr></table></figure>
+
+<p>本来我是想要在我的<code>manjaro</code>上安装<code>mysql</code>的，但是总是遇到找不到<code>\tmp\mysql.sock</code>的问题，遂使用<code>mariadb</code>作为<code>mysql</code>的优化替代品。<br>（听闻有传言是某版本之后的<code>manjaro</code>不再支持<code>mysql</code>）</p>
+<h2 id="通过本次安装我新学会了："><a href="#通过本次安装我新学会了：" class="headerlink" title="通过本次安装我新学会了："></a>通过本次安装我新学会了：</h2><p>使用<code>systemctl</code>管理服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> mariadb</span><br><span class="line"><span class="comment"># output：Created symlink /etc/systemd/system/multi-user.target.wants/mariadb.service → /usr/lib/systemd/system/mariadb.service.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 除了enable指令还可以通过stop start restart status等指令来控制服务</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yorux.fun/2023/11/23/leetcode-2023-11-23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -904,7 +1007,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

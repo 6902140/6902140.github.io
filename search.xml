@@ -131,6 +131,35 @@
       </tags>
   </entry>
   <entry>
+    <title>记录`mariaDB`在`manjaro`上的一次安装配置</title>
+    <url>/2023/11/23/mariadb-installation-on-manjaro/</url>
+    <content><![CDATA[<h2 id="基本安装步骤："><a href="#基本安装步骤：" class="headerlink" title="基本安装步骤："></a>基本安装步骤：</h2><p>step1：pacman安装mariadb的安装包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S  mariadb-clients mariadb <span class="comment">#命令行安装mariadb        </span></span><br></pre></td></tr></table></figure>
+
+<p>step2：根据配置安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql <span class="comment">#按照配置安装</span></span><br></pre></td></tr></table></figure>
+
+<p>step3：启动mariadb service</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ systemctl start mariadb <span class="comment"># 启动mariadb服务</span></span><br><span class="line">$ systemctl <span class="built_in">enable</span> mariadb <span class="comment"># 设置开机自启动</span></span><br></pre></td></tr></table></figure>
+
+<p>step4: 配置数据库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mariadb-secure-installation <span class="comment"># 主要是进行🔑的配置</span></span><br></pre></td></tr></table></figure>
+
+<p>step5：登陆<code>mariadb</code>服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mariadb -u root -p </span><br></pre></td></tr></table></figure>
+
+<p>本来我是想要在我的<code>manjaro</code>上安装<code>mysql</code>的，但是总是遇到找不到<code>\tmp\mysql.sock</code>的问题，遂使用<code>mariadb</code>作为<code>mysql</code>的优化替代品。<br>（听闻有传言是某版本之后的<code>manjaro</code>不再支持<code>mysql</code>）</p>
+<h2 id="通过本次安装我新学会了："><a href="#通过本次安装我新学会了：" class="headerlink" title="通过本次安装我新学会了："></a>通过本次安装我新学会了：</h2><p>使用<code>systemctl</code>管理服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> mariadb</span><br><span class="line"><span class="comment"># output：Created symlink /etc/systemd/system/multi-user.target.wants/mariadb.service → /usr/lib/systemd/system/mariadb.service.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 除了enable指令还可以通过stop start restart status等指令来控制服务</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
+      <tags>
+        <tag>config</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小站诞生</title>
     <url>/2023/11/14/start-my-website/</url>
     <content><![CDATA[<p>这个小站是<code>Zhuiri Xiao</code>@<code>xjtu</code>于2023.11.20日基于<code>hexo</code>创建的托管于<code>github</code>平台的个人博客;</p>
