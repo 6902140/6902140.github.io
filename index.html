@@ -198,6 +198,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yorux.fun/2023/11/24/golang%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%9D%BF%E5%9D%97%E4%BE%9D%E8%B5%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Zhuiri Xiao">
+      <meta itemprop="description" content="就如高舉着這份不變的思念一樣">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiao Blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/24/golang%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%9D%BF%E5%9D%97%E4%BE%9D%E8%B5%96/" class="post-title-link" itemprop="url">golang项目结构与板块依赖</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-24 19:23:52 / 修改时间：19:39:52" itemprop="dateCreated datePublished" datetime="2023-11-24T19:23:52+08:00">2023-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%8B%A6%E9%80%BC%E5%BC%80%E5%8F%91%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">苦逼开发日常</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>250</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>假设目前有一个项目名字叫<code>goproj</code>，然后该项目下有很多模块<code>mod1</code>,<code>mod2</code>,<code>mod3</code>…</p>
+<p> 那么项目依赖管理应该是在<code>goproj</code>根目录下使用’go mod init [mod-name] ‘方法创建<code>go.mod</code>文件。</p>
+<p> 然后在<code>mod1</code>中引用<code>mod2</code>中<code>package pkg2</code>的方法应该是：</p>
+<p> 在mod1文件夹下使用：</p>
+ <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;mod-name/mod2&quot;</span></span><br></pre></td></tr></table></figure>
+<p> 加载依赖所处的路径</p>
+<p>再使用：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg2.method()</span><br></pre></td></tr></table></figure>
+<p>调用包中的方法即可。</p>
+<p>（1）注意<code>go.mod</code>文件的作用;<br>（2）注意文件夹名和包名的区别;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yorux.fun/2023/11/24/sql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1201,7 +1290,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

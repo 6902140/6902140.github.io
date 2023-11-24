@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>golang项目结构与板块依赖</title>
+    <url>/2023/11/24/golang%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%9D%BF%E5%9D%97%E4%BE%9D%E8%B5%96/</url>
+    <content><![CDATA[<p>假设目前有一个项目名字叫<code>goproj</code>，然后该项目下有很多模块<code>mod1</code>,<code>mod2</code>,<code>mod3</code>…</p>
+<p> 那么项目依赖管理应该是在<code>goproj</code>根目录下使用’go mod init [mod-name] ‘方法创建<code>go.mod</code>文件。</p>
+<p> 然后在<code>mod1</code>中引用<code>mod2</code>中<code>package pkg2</code>的方法应该是：</p>
+<p> 在mod1文件夹下使用：</p>
+ <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;mod-name/mod2&quot;</span></span><br></pre></td></tr></table></figure>
+<p> 加载依赖所处的路径</p>
+<p>再使用：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">pkg2.method()</span><br></pre></td></tr></table></figure>
+<p>调用包中的方法即可。</p>
+<p>（1）注意<code>go.mod</code>文件的作用;<br>（2）注意文件夹名和包名的区别;</p>
+]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
+      <tags>
+        <tag>daily-dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-2023-11.22</title>
     <url>/2023/11/22/leetcode-2023-11-22/</url>
     <content><![CDATA[<h1 id="leetcode日常2023-11-22"><a href="#leetcode日常2023-11-22" class="headerlink" title="leetcode日常2023.11.22"></a><code>leetcode</code>日常2023.11.22</h1><hr>
