@@ -160,6 +160,43 @@
       </tags>
   </entry>
   <entry>
+    <title>sql数据库学习（1）</title>
+    <url>/2023/11/24/sql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h2><p>（1）创建新数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE <span class="operator">&lt;</span>database<span class="operator">-</span>name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+<p>（2）删除数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DATABASE <span class="operator">&lt;</span>database<span class="operator">-</span>name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+<p>（3）显示数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br></pre></td></tr></table></figure>
+<p>（4）选中数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">USE <span class="operator">&lt;</span>database<span class="operator">-</span>name<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库的数据类型"><a href="#数据库的数据类型" class="headerlink" title="数据库的数据类型"></a>数据库的数据类型</h2><p><code>MySQL</code> 支持多种类型，大致可以分为三类：数值、日期&#x2F;时间和字符串(字符)类型。</p>
+<ul>
+<li><p>整数类型（Integer Types）：用于存储整数值，例如INT、INTEGER、TINYINT、SMALLINT、BIGINT等。</p>
+</li>
+<li><p>小数类型（Decimal Types）：用于存储小数值，包括定点小数和浮点小数。常见的类型有DECIMAL、NUMERIC、FLOAT、DOUBLE等。</p>
+</li>
+<li><p>字符串类型（String Types）：用于存储文本数据，例如CHAR、VARCHAR、TEXT、NCHAR、NVARCHAR、NTEXT等。</p>
+</li>
+<li><p>日期和时间类型（Date and Time Types）：用于存储日期和时间信息，常见的类型包括DATE、TIME、DATETIME、TIMESTAMP等。</p>
+</li>
+<li><p>布尔类型（Boolean Types）：用于存储布尔值，表示真或假。在某些数据库中，布尔类型可能被表示为BOOLEAN或BIT。</p>
+</li>
+<li><p>二进制类型（Binary Types）：用于存储二进制数据，例如图像、音频或视频文件。常见的类型有BINARY、VARBINARY、BLOB等。</p>
+</li>
+<li><p>其他特殊类型：如枚举类型（ENUM）、集合类型（SET）、JSON类型（JSON）等，这些类型可能在不同的数据库系统中具有不同的实现。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
+      <tags>
+        <tag>[object Object]</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小站诞生</title>
     <url>/2023/11/14/start-my-website/</url>
     <content><![CDATA[<p>这个小站是<code>Zhuiri Xiao</code>@<code>xjtu</code>于2023.11.20日基于<code>hexo</code>创建的托管于<code>github</code>平台的个人博客;</p>
@@ -231,6 +268,27 @@
       </categories>
       <tags>
         <tag>我和我的帆帆公主</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一个leetcode优化</title>
+    <url>/2023/11/24/%E8%AE%B0%E4%B8%80%E4%B8%AAleetcode%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<p>给你一个下标从 0 开始的整数数组 nums ，它表示英雄的能力值。如果我们选出一部分英雄，这组英雄的 力量 定义为：</p>
+<p>i0 ，i1 ，… ik 表示这组英雄在数组中的下标。那么这组英雄的力量为 max(nums[i0],nums[i1] … nums[ik])2 * min(nums[i0],nums[i1] … nums[ik]) 。<br>请你返回所有可能的 非空 英雄组的 力量 之和。由于答案可能非常大，请你将结果对 109 + 7 取余。</p>
+<p> <a href="https://leetcode.cn/problems/power-of-heroes/description/?envType=daily-question&envId=2023-11-24">原题链接 click here</a></p>
+<hr>
+<p> 解法&lt;1&gt;:暴力遍历</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 暴力实现</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumOfPower</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        stub=<span class="number">10</span>**<span class="number">9</span>+<span class="number">7</span></span><br><span class="line">        nums=<span class="built_in">sorted</span>(nums,reverse=<span class="literal">False</span>)</span><br><span class="line">        processedNums=nums</span><br><span class="line">        length=<span class="built_in">len</span>(processedNums)</span><br><span class="line">        db=[<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">5</span>+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,length):</span><br><span class="line">            db[i]=db[i-<span class="number">1</span>]*<span class="number">2</span>%stub</span><br><span class="line">        res=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i,length):</span><br><span class="line">                delta=(processedNums[j]**<span class="number">2</span>)*processedNums[i]  </span><br><span class="line">                <span class="keyword">if</span> j&gt;i:</span><br><span class="line">                    delta*=db[j-i-<span class="number">1</span>]</span><br><span class="line">                    delta%=stub                    </span><br><span class="line">                res+= delta</span><br><span class="line">                res%=stub</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<p>解法&lt;2&gt;:动态规划算法实现</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 动态规划解法：</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumOfPower</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res=<span class="number">0</span>;stub=<span class="number">10</span>**<span class="number">9</span>+<span class="number">7</span></span><br><span class="line">        length=<span class="built_in">len</span>(nums)</span><br><span class="line">        nums=<span class="built_in">sorted</span>(nums)</span><br><span class="line">        dpmin=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length)] <span class="comment">#dpmin[i]保存的是以nums第i个数字结尾的所有序列的最小元素之和   </span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,length):</span><br><span class="line">            delta=nums[i]*nums[i]</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,i):</span><br><span class="line">                dpmin[i]+=dpmin[j]</span><br><span class="line">                dpmin[i]%=stub</span><br><span class="line">            dpmin[i]+=nums[i]</span><br><span class="line">            dpmin[i]%=stub</span><br><span class="line">            delta=(delta*dpmin[i])%stub</span><br><span class="line">            res+=delta</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">             </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>解法&lt;3&gt;：前缀和优化的动态规划算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 动态规划+前缀和优化解法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumOfPower</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res=<span class="number">0</span>;stub=<span class="number">10</span>**<span class="number">9</span>+<span class="number">7</span></span><br><span class="line">        length=<span class="built_in">len</span>(nums)</span><br><span class="line">        nums=<span class="built_in">sorted</span>(nums)</span><br><span class="line">        dpmin=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length+<span class="number">1</span>)] <span class="comment">#dpmin[i]保存的是以nums第i个数字结尾的所有序列的最小元素之和   </span></span><br><span class="line">        </span><br><span class="line">        preSum=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length+<span class="number">1</span>)]<span class="comment"># preSum(i)=sum(dpmin) from 0 to i-1</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        于是有：</span></span><br><span class="line"><span class="string">        preSum(i+1)=preSum(i)+dpmin(i)</span></span><br><span class="line"><span class="string">        dpmin(i)=nums[i]+preSum(i)</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,length):</span><br><span class="line">            delta=nums[i]*nums[i]</span><br><span class="line">            dpmin[i]=(nums[i]+preSum[i])%stub</span><br><span class="line">            preSum[i+<span class="number">1</span>]=preSum[i]+dpmin[i]%stub</span><br><span class="line">            delta=(delta*dpmin[i])%stub</span><br><span class="line">            res+=delta</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">             </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>苦逼开发日常</category>
+      </categories>
+      <tags>
+        <tag>daily algorithm</tag>
       </tags>
   </entry>
 </search>
